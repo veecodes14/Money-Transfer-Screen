@@ -76,7 +76,7 @@ export function TransferPage() {
     reset()
   }
 
-  // ─── Theming ───────────────────────────────────────────────────────────────
+  //  Theming 
   const bg = dark ? 'bg-slate-900' : 'bg-gray-50'
   const surface = dark ? 'bg-slate-800/60 border-slate-700/60' : 'bg-white border-gray-200'
   const heading = dark ? 'text-white' : 'text-gray-900'
