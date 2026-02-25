@@ -41,3 +41,23 @@ export type AppNotification = {
   read: boolean
   type: 'credit' | 'debit' | 'info' | 'alert'
 }
+
+export type DevFlags = {
+  validationLoading: boolean
+  validationError: boolean
+  validationErrorMsg: string
+  transferLoading: boolean
+  transferError: boolean
+  transferErrorMsg: string
+  showSuccess: boolean
+}
+
+export const DEFAULT_DEV_FLAGS: DevFlags = {
+  validationLoading: false,
+  validationError: false,
+  validationErrorMsg: 'Account not found',
+  transferLoading: false,
+  transferError: false,
+  transferErrorMsg: 'Transaction failed. Please try again.',
+  showSuccess: false,
+}
