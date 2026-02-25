@@ -6,6 +6,7 @@ import type { TransferFormData } from '../types/transfer'
 interface ConfirmModalProps {
   data: TransferFormData
   dark: boolean
+  balance: number
   isPending: boolean
   isError: boolean
   error: Error | null
@@ -16,6 +17,7 @@ interface ConfirmModalProps {
 export function ConfirmModal({
   data,
   dark,
+  balance,
   isPending,
   isError,
   error,
@@ -31,6 +33,7 @@ export function ConfirmModal({
   const divider = dark ? 'border-slate-700' : 'border-primary-100'
   const rowLabel = dark ? 'text-slate-400 text-xs' : 'text-primary-400 text-xs'
   const rowValue = dark ? 'text-white font-medium text-sm' : 'text-brand-navy font-medium text-sm'
+  const insufficientFunds = parseFloat(data.amount) > balance
 
   return (
     <div className={overlay}>
@@ -86,6 +89,12 @@ export function ConfirmModal({
           </p>
         )}
 
+        {insufficientFunds && (
+          <p className="text-sm text-red-400 text-center mb-4">
+            Insufficient funds. Your balance is GH₵{balance.toLocaleString('en-GH', { minimumFractionDigits: 2 })}.
+          </p>
+        )}
+
         {/* Actions */}
         <div className="flex gap-3">
           <button
@@ -100,8 +109,8 @@ export function ConfirmModal({
           <button
             type="button"
             onClick={onConfirm}
-            disabled={isPending}
-            style={{ background: isPending ? undefined : 'linear-gradient(135deg, #D4A843, #B08A2E)', color: '#001A3A' }}
+            disabled={isPending || insufficientFunds}
+            style={{ background: isPending || insufficientFunds ? undefined : 'linear-gradient(135deg, #D4A843, #B08A2E)', color: '#001A3A' }}
             className="flex-2 flex items-center justify-center gap-2 py-3.5 rounded-2xl
               font-bold text-sm transition-all disabled:opacity-60 disabled:cursor-not-allowed
               active:scale-[0.98]"

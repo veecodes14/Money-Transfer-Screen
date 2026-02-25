@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Wallet } from 'lucide-react'
+import { Wallet, Eye, EyeOff } from 'lucide-react'
 import { TransferForm } from '../components/TransferForm'
 import { ConfirmModal } from '../components/ConfirmModal'
 import { SuccessScreen } from '../components/SuccessScreen'
@@ -25,6 +25,15 @@ export function TransferPage() {
   })
   const [step, setStep] = useState<Step>('form')
   const [pendingData, setPendingData] = useState<TransferFormData | null>(null)
+  const [balance, setBalance] = useState<number>(() => {
+    try {
+      const saved = localStorage.getItem('secondbank_balance')
+      return saved !== null ? parseFloat(saved) : 248300.00
+    } catch {
+      return 248300.00
+    }
+  })
+  const [balanceHidden, setBalanceHidden] = useState(false)
 
   const {
     mutate: doTransfer,
@@ -43,9 +52,19 @@ export function TransferPage() {
     } catch {}
   }, [dark])
 
+  // Persist balance
+  useEffect(() => {
+    try {
+      localStorage.setItem('secondbank_balance', String(balance))
+    } catch {}
+  }, [balance])
+
   // Advance to success screen when transfer completes
   useEffect(() => {
-    if (isSuccess) setStep('success')
+    if (isSuccess && pendingData) {
+      setBalance((prev) => prev - parseFloat(pendingData.amount))
+      setStep('success')
+    }
   }, [isSuccess])
 
   function handleContinue(data: TransferFormData) {
@@ -56,6 +75,7 @@ export function TransferPage() {
 
   function handleConfirm() {
     if (!pendingData || isPending) return
+    if (parseFloat(pendingData.amount) > balance) return
     doTransfer({
       recipientAccount: pendingData.accountNumber,
       bankCode: pendingData.bankCode,
@@ -106,13 +126,27 @@ export function TransferPage() {
             <Wallet className="w-4.5 h-4.5 text-white" strokeWidth={2.2} />
           </div>
           <div className="flex-1">
-            <p className={`text-base font-bold leading-none ${heading}`}>NovaBank</p>
+            <p className={`text-base font-bold leading-none ${heading}`}>Second Bank</p>
             <p className={`text-[11px] ${subheading}`}>Personal Banking</p>
           </div>
           {/* Balance pill */}
-          <div className={`text-right px-3 py-1.5 rounded-xl ${dark ? 'bg-slate-700/60' : 'bg-primary-50 border border-primary-100'}`}>
-            <p className={`text-[10px] font-medium ${subheading}`}>Balance</p>
-            <p className={`text-sm font-bold ${heading}`}>GH₵248,300.00</p>
+          <div className={`flex items-center gap-1.5 text-right px-3 py-1.5 rounded-xl ${dark ? 'bg-slate-700/60' : 'bg-primary-50 border border-primary-100'}`}>
+            <div>
+              <p className={`text-[10px] font-medium ${subheading}`}>Balance</p>
+              <p className={`text-sm font-bold ${heading}`}>
+                {balanceHidden
+                  ? '••••••'
+                  : `GH₵${balance.toLocaleString('en-GH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setBalanceHidden((h) => !h)}
+              className={`p-1 rounded-lg transition-colors ${dark ? 'text-slate-400 hover:text-slate-200' : 'text-primary-400 hover:text-brand-navy'}`}
+              aria-label={balanceHidden ? 'Show balance' : 'Hide balance'}
+            >
+              {balanceHidden ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
+            </button>
           </div>
         </div>
       </header>
@@ -158,6 +192,7 @@ export function TransferPage() {
         <ConfirmModal
           data={pendingData}
           dark={dark}
+          balance={balance}
           isPending={isPending}
           isError={isError}
           error={error}
