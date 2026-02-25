@@ -9,9 +9,9 @@ type User = {
   email: string
 }
 
-// Mocked valid credentials 
-const VALID_USERNAME = process.env.VALID_USERNAME
-const VALID_PASSWORD = process.env.VALID_PASSWORD
+// Mocked valid credentials (kept here in the service)
+const VALID_USERNAME = 'customer@bank.com'
+const VALID_PASSWORD = 'SecurePass123!'
 
 export async function login(creds: Credentials): Promise<User> {
   // Simulate network latency
