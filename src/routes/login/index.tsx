@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import React, { useState } from 'react'
-import { User, Lock } from 'lucide-react'
+import { User, Lock, Wallet } from 'lucide-react'
 import { useAuth } from '../../hooks/useAuth'
 
 export const Route = createFileRoute('/login/')({
@@ -25,15 +25,24 @@ function RouteComponent() {
   return (
     <div className="min-h-screen flex items-center justify-center p-6" style={{ background: 'linear-gradient(160deg, #001A3A 0%, #002855 60%, #003D7A 100%)' }}>
       <div className="max-w-md w-full">
+        {/* Brand header */}
+        <div className="flex flex-col items-center mb-8 gap-3">
+          <div
+            className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg"
+            style={{ background: 'linear-gradient(135deg, #002855, #003D7A)' }}
+          >
+            <Wallet className="w-8 h-8 text-white" strokeWidth={2} />
+          </div>
+          <div className="text-center">
+            <h1 className="text-2xl font-black text-white tracking-tight">Second Bank</h1>
+            <p className="text-sm" style={{ color: '#80AACC' }}>Personal Banking</p>
+          </div>
+        </div>
+
         <div className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl p-8 shadow-2xl">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-12 rounded-full flex items-center justify-center text-[#001A3A] font-bold shadow-md" style={{ background: 'linear-gradient(135deg, #E8C976, #D4A843)' }}>
-              BK
-            </div>
-            <div>
-              <h2 className="text-2xl font-semibold text-white">Welcome back</h2>
-              <p className="text-sm" style={{ color: '#B3CCE0' }}>Sign in to your bank account</p>
-            </div>
+          <div className="mb-6">
+            <h2 className="text-xl font-semibold text-white">Welcome back</h2>
+            <p className="text-sm mt-0.5" style={{ color: '#B3CCE0' }}>Sign in to your account to continue</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
