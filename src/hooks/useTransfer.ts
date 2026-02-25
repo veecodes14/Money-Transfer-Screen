@@ -9,6 +9,7 @@ import type { TransferRequest, TransferResponse } from '../types/transfer'
  * - The button should also be `disabled={isPending}` as a visual safeguard.
  */
 export function useTransfer() {
+    //use ref does not trigger a rerender, no race conditions
   const inFlight = useRef(false)
 
   const mutation = useMutation<TransferResponse, Error, TransferRequest>({
