@@ -1,11 +1,17 @@
-import { Moon, Sun, ChevronRight, Shield, HelpCircle, LogOut } from 'lucide-react'
+import { useState } from 'react'
+import { Moon, Sun, ChevronRight, Shield, HelpCircle, LogOut, FlaskConical } from 'lucide-react'
+import { DevDrawer } from './DevDrawer'
+import type { DevFlags } from '../types/transfer'
 
 interface SettingsTabProps {
   dark: boolean
   onToggleDark: () => void
+  devFlags: DevFlags
+  onDevFlagsChange: (flags: DevFlags) => void
 }
 
-export function SettingsTab({ dark, onToggleDark }: SettingsTabProps) {
+export function SettingsTab({ dark, onToggleDark, devFlags, onDevFlagsChange }: SettingsTabProps) {
+  const [devDrawerOpen, setDevDrawerOpen] = useState(false)
   const muted = dark ? 'text-slate-400' : 'text-primary-400'
   const item = dark
     ? 'bg-slate-700/40 border border-slate-600/50 text-white'
@@ -109,7 +115,26 @@ export function SettingsTab({ dark, onToggleDark }: SettingsTabProps) {
         Sign Out
       </button>
 
+      {/* Dev Tools */}
+      <button
+        type="button"
+        onClick={() => setDevDrawerOpen(true)}
+        className={`w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl text-sm font-semibold border
+          ${dark ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' : 'bg-amber-50 text-amber-700 border-amber-200'}`}
+      >
+        <FlaskConical className="w-4 h-4" />
+        Developer Tools
+      </button>
+
       <p className={`text-center text-xs ${muted}`}>Second Bank v1.0.0</p>
+
+      <DevDrawer
+        open={devDrawerOpen}
+        dark={dark}
+        flags={devFlags}
+        onChange={onDevFlagsChange}
+        onClose={() => setDevDrawerOpen(false)}
+      />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { AlertTriangle } from 'lucide-react'
 import { Spinner } from './Spinner'
 import { formatAmount } from '../utils/bankData'
-import type { TransferFormData } from '../types/transfer'
+import type { TransferFormData, DevFlags } from '../types/transfer'
 
 interface ConfirmModalProps {
   data: TransferFormData
@@ -10,6 +10,7 @@ interface ConfirmModalProps {
   isPending: boolean
   isError: boolean
   error: Error | null
+  devFlags?: DevFlags
   onConfirm: () => void
   onCancel: () => void
 }
@@ -18,12 +19,17 @@ export function ConfirmModal({
   data,
   dark,
   balance,
-  isPending,
-  isError,
-  error,
+  isPending: realIsPending,
+  isError: realIsError,
+  error: realError,
+  devFlags,
   onConfirm,
   onCancel,
 }: ConfirmModalProps) {
+  // Dev flag overrides
+  const isPending = devFlags?.transferLoading ? true : realIsPending
+  const isError = devFlags?.transferError ? true : realIsError
+  const error = devFlags?.transferError ? new Error(devFlags.transferErrorMsg) : realError
   const overlay = 'fixed inset-0 z-50 flex items-end sm:items-center justify-center'
   const backdrop = 'absolute inset-0 bg-black/60 backdrop-blur-sm'
   const sheet = dark

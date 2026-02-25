@@ -7,7 +7,8 @@ import { NotificationsTab } from '../components/NotificationsTab'
 import { SettingsTab } from '../components/SettingsTab'
 import { BottomNav, type Tab } from '../components/BottomNav'
 import { useTransfer } from '../hooks/useTransfer'
-import type { TransferFormData } from '../types/transfer'
+import type { TransferFormData, DevFlags } from '../types/transfer'
+import { DEFAULT_DEV_FLAGS } from '../types/transfer'
 
 type Step = 'form' | 'confirm' | 'success'
 
@@ -34,6 +35,18 @@ export function TransferPage() {
     }
   })
   const [balanceHidden, setBalanceHidden] = useState(false)
+  const [devFlags, setDevFlags] = useState<DevFlags>(DEFAULT_DEV_FLAGS)
+
+  // Mock data used when devFlags.showSuccess is on
+  const DEV_MOCK_RESULT = { status: 'success', reference: 'TXN_DEV_MOCK' }
+  const DEV_MOCK_FORM: TransferFormData = {
+    accountNumber: '0123456789',
+    bankCode: 'GCB',
+    bankName: 'GCB Bank',
+    amount: '500.00',
+    narration: 'Dev preview',
+    accountName: 'DEMO RECIPIENT',
+  }
 
   const {
     mutate: doTransfer,
@@ -163,13 +176,13 @@ export function TransferPage() {
           {tab === 'transfer' && (
             <div className={`rounded-3xl border p-5 ${surface}`}>
               {/* Form always in the background; success replaces it */}
-              {step !== 'success' && (
-                <TransferForm dark={dark} onContinue={handleContinue} />
+              {step !== 'success' && !devFlags.showSuccess && (
+                <TransferForm dark={dark} devFlags={devFlags} onContinue={handleContinue} />
               )}
-              {step === 'success' && transferResult && pendingData && (
+              {(step === 'success' || devFlags.showSuccess) && (transferResult || devFlags.showSuccess) && (pendingData || devFlags.showSuccess) && (
                 <SuccessScreen
-                  result={transferResult}
-                  formData={pendingData}
+                  result={devFlags.showSuccess ? DEV_MOCK_RESULT : transferResult!}
+                  formData={devFlags.showSuccess ? DEV_MOCK_FORM : pendingData!}
                   dark={dark}
                   onNewTransfer={handleNewTransfer}
                 />
@@ -179,7 +192,12 @@ export function TransferPage() {
 
           {tab === 'notifications' && <NotificationsTab dark={dark} />}
           {tab === 'settings' && (
-            <SettingsTab dark={dark} onToggleDark={() => setDark((d) => !d)} />
+            <SettingsTab
+              dark={dark}
+              onToggleDark={() => setDark((d) => !d)}
+              devFlags={devFlags}
+              onDevFlagsChange={setDevFlags}
+            />
           )}
         </div>
       </main>
@@ -196,6 +214,7 @@ export function TransferPage() {
           isPending={isPending}
           isError={isError}
           error={error}
+          devFlags={devFlags}
           onConfirm={handleConfirm}
           onCancel={handleCancel}
         />

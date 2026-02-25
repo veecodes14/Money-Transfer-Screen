@@ -2,22 +2,37 @@ import { useState } from 'react'
 import { ChevronDown, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
 import { useValidateAccount } from '../hooks/useValidateAccount'
 import { BANKS } from '../utils/bankData'
-import type { TransferFormData } from '../types/transfer'
+import type { TransferFormData, DevFlags } from '../types/transfer'
 
 interface TransferFormProps {
   dark: boolean
+  devFlags?: DevFlags
   onContinue: (data: TransferFormData) => void
 }
 
-export function TransferForm({ dark, onContinue }: TransferFormProps) {
+export function TransferForm({ dark, devFlags, onContinue }: TransferFormProps) {
   const [accountNumber, setAccountNumber] = useState('')
   const [bankCode, setBankCode] = useState('')
   const [amount, setAmount] = useState('')
   const [narration, setNarration] = useState('')
   const [touched, setTouched] = useState({ amount: false, narration: false })
 
-  const { accountName, isValidating, isError, validationError, isSuccess } =
-    useValidateAccount(accountNumber, bankCode)
+  const {
+    accountName: realAccountName,
+    isValidating: realIsValidating,
+    isError: realIsError,
+    validationError: realValidationError,
+    isSuccess: realIsSuccess,
+  } = useValidateAccount(accountNumber, bankCode)
+
+  // Dev flag overrides
+  const isValidating = devFlags?.validationLoading ? true : realIsValidating
+  const isError = devFlags?.validationError ? true : realIsError
+  const validationError = devFlags?.validationError
+    ? new Error(devFlags.validationErrorMsg)
+    : realValidationError
+  const accountName = devFlags?.validationError ? null : realAccountName
+  const isSuccess = devFlags?.validationError ? false : (devFlags?.validationLoading ? false : realIsSuccess)
 
   const selectedBank = BANKS.find((b) => b.code === bankCode)
   const amountNum = parseFloat(amount)
