@@ -163,13 +163,14 @@ export function TransferForm({ dark, devFlags, onContinue }: TransferFormProps) 
         </label>
         <input
           type="text"
+          maxLength={50}
           value={narration}
-          onChange={(e) => setNarration(e.target.value.slice(0, 100))}
+          onChange={(e) => setNarration(e.target.value.slice(0, 50))}
           placeholder="e.g. Rent, School fees…"
           className={`w-full border rounded-xl px-4 py-3.5 text-base transition-all outline-none ${input}`}
         />
-        <p className={`text-xs text-right px-1 ${dark ? 'text-slate-500' : 'text-primary-400'}`}>
-          {narration.length}/100
+        <p className={`text-xs text-right px-1 ${narration.length >= 50 ? 'text-red-400' : dark ? 'text-slate-500' : 'text-primary-400'}`}>
+          {narration.length}/50
         </p>
       </div>
 
