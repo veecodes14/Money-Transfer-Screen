@@ -138,12 +138,17 @@ export function TransferForm({ dark, devFlags, onContinue }: TransferFormProps) 
           Amount (GH₵)
         </label>
         <input
-          type="number"
+          type="text"
           inputMode="decimal"
-          min="0"
-          step="0.01"
           value={amount}
-          onChange={(e) => setAmount(e.target.value)}
+          onChange={(e) => {
+            // Allow digits and at most one decimal point; strip everything else (e, +, -, etc.)
+            const raw = e.target.value
+            const sanitized = raw
+              .replace(/[^0-9.]/g, '')          // remove non-numeric except dot
+              .replace(/^(\d*\.?\d*).*$/, '$1')  // keep only first decimal segment
+            setAmount(sanitized)
+          }}
           onBlur={() => setTouched((t) => ({ ...t, amount: true }))}
           placeholder="0.00"
           className={`w-full border rounded-xl px-4 py-3.5 text-base transition-all outline-none ${input}`}
