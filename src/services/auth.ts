@@ -9,9 +9,11 @@ type User = {
   email: string
 }
 
-// Mocked valid credentials (kept here in the service)
-const VALID_USERNAME = 'customer@bank.com'
-const VALID_PASSWORD = 'SecurePass123!'
+// Mocked valid credentials — set VITE_VALID_USERNAME and VITE_VALID_PASSWORD in .env
+const VALID_USERNAME = import.meta.env.VITE_VALID_USERNAME as string
+const VALID_PASSWORD = import.meta.env.VITE_VALID_PASSWORD as string
+
+
 
 export async function login(creds: Credentials): Promise<User> {
   // Simulate network latency
