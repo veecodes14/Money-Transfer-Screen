@@ -50,7 +50,7 @@ export function ConfirmModal({
         {/* Amount hero */}
         <div className="flex items-center justify-center py-4 mb-4">
           <span className={`text-4xl font-black tracking-tight ${dark ? 'text-white' : 'text-gray-900'}`}>
-            ₦{formatAmount(data.amount)}
+            ₵{formatAmount(data.amount)}
           </span>
         </div>
 
