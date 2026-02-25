@@ -7,7 +7,9 @@ import {
 } from '@tanstack/react-router'
 
 
+import React from 'react'
 import TanStackQueryProvider from '../integrations/tanstack-query/root-provider'
+import { NotFoundPage } from '../components/NotFoundPage'
 
 import appCss from '../styles.css?url'
 
@@ -17,7 +19,8 @@ interface MyRouterContext {
   queryClient: QueryClient
 }
 
-export const Route = createRootRouteWithContext<MyRouterContext>()({
+export const Route = createRootRouteWithContext<MyRouterContext>()({ 
+  notFoundComponent: NotFoundPage,
   head: () => ({
     meta: [
       {
