@@ -71,7 +71,7 @@ export function SettingsTab({ dark, onToggleDark, devFlags, onDevFlagsChange }: 
         </div>
         <div className="flex-1 min-w-0">
           <p className={`font-bold text-sm ${dark ? 'text-white' : 'text-brand-navy'}`}>
-            Ava Customer
+            Adwoa Coffie
           </p>
           <p className={`text-xs truncate ${muted}`}>customer@bank.com</p>
         </div>
