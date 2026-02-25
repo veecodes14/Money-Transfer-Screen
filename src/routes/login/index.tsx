@@ -23,39 +23,39 @@ function RouteComponent() {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
       <div className="max-w-md w-full">
-        <div className="bg-white/5 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 shadow-lg">
+        <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-lg">
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-12 rounded-full bg-linear-to-tr from-cyan-400 to-blue-500 flex items-center justify-center text-white font-bold shadow-md">
               BK
             </div>
             <div>
-              <h2 className="text-2xl font-semibold text-white">Welcome back</h2>
-              <p className="text-sm text-slate-300">Sign in to your bank account</p>
+              <h2 className="text-2xl font-semibold text-gray-900">Welcome back</h2>
+              <p className="text-sm text-gray-500">Sign in to your bank account</p>
             </div>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <label className="block">
-              <div className="flex items-center gap-2 text-sm text-slate-300 mb-2">Username</div>
-              <div className="flex items-center bg-slate-800 border border-slate-700 rounded-lg">
-                <div className="px-3 text-slate-400">
+              <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">Username</div>
+              <div className="flex items-center bg-gray-50 border border-gray-300 rounded-lg">
+                <div className="px-3 text-gray-400">
                   <User className="w-5 h-5" />
                 </div>
                 <input
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="you@bank.com"
-                  className="w-full bg-transparent px-3 py-3 text-white placeholder:text-slate-400 focus:outline-none"
+                  className="w-full bg-transparent px-3 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none"
                 />
               </div>
             </label>
 
             <label className="block">
-              <div className="flex items-center gap-2 text-sm text-slate-300 mb-2">Password</div>
-              <div className="flex items-center bg-slate-800 border border-slate-700 rounded-lg">
-                <div className="px-3 text-slate-400">
+              <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">Password</div>
+              <div className="flex items-center bg-gray-50 border border-gray-300 rounded-lg">
+                <div className="px-3 text-gray-400">
                   <Lock className="w-5 h-5" />
                 </div>
                 <input
@@ -63,7 +63,7 @@ function RouteComponent() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Your password"
-                  className="w-full bg-transparent px-3 py-3 text-white placeholder:text-slate-400 focus:outline-none"
+                  className="w-full bg-transparent px-3 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none"
                 />
               </div>
             </label>
@@ -106,7 +106,7 @@ function RouteComponent() {
           </form>
         </div>
 
-        <p className="text-center text-sm text-slate-400 mt-4">Need an account? Contact your branch to register.</p>
+        <p className="text-center text-sm text-gray-500 mt-4">Need an account? Contact your branch to register.</p>
       </div>
     </div>
   )
