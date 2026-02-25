@@ -77,10 +77,10 @@ export function TransferPage() {
   }
 
   //  Theming 
-  const bg = dark ? 'bg-slate-900' : 'bg-gray-50'
-  const surface = dark ? 'bg-slate-800/60 border-slate-700/60' : 'bg-white border-gray-200'
-  const heading = dark ? 'text-white' : 'text-gray-900'
-  const subheading = dark ? 'text-slate-400' : 'text-gray-500'
+  const bg = dark ? 'bg-slate-900' : 'bg-primary-50'
+  const surface = dark ? 'bg-slate-800/60 border-slate-700/60' : 'bg-white border-primary-100'
+  const heading = dark ? 'text-white' : 'text-brand-navy'
+  const subheading = dark ? 'text-slate-400' : 'text-primary-400'
 
   // Tab title map
   const tabTitles: Record<Tab, string> = {
@@ -99,10 +99,10 @@ export function TransferPage() {
     <div className={`min-h-dvh ${bg} flex flex-col`}>
       {/* Header */}
       <header
-        className={`sticky top-0 z-30 border-b ${dark ? 'bg-slate-900/95 border-slate-700/60' : 'bg-white/95 border-gray-200'} backdrop-blur-md`}
+        className={`sticky top-0 z-30 border-b ${dark ? 'bg-slate-900/95 border-slate-700/60' : 'bg-white/95 border-primary-100'} backdrop-blur-md`}
       >
         <div className="max-w-md mx-auto flex items-center gap-3 px-5 py-4">
-          <div className="w-9 h-9 rounded-xl bg-linear-to-br from-blue-600 to-cyan-500 flex items-center justify-center shadow-md shadow-blue-500/30">
+          <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-md" style={{ background: 'linear-gradient(135deg, #002855, #003D7A)' }}>
             <Wallet className="w-4.5 h-4.5 text-white" strokeWidth={2.2} />
           </div>
           <div className="flex-1">
@@ -110,7 +110,7 @@ export function TransferPage() {
             <p className={`text-[11px] ${subheading}`}>Personal Banking</p>
           </div>
           {/* Balance pill */}
-          <div className={`text-right px-3 py-1.5 rounded-xl ${dark ? 'bg-slate-700/60' : 'bg-gray-100'}`}>
+          <div className={`text-right px-3 py-1.5 rounded-xl ${dark ? 'bg-slate-700/60' : 'bg-primary-50 border border-primary-100'}`}>
             <p className={`text-[10px] font-medium ${subheading}`}>Balance</p>
             <p className={`text-sm font-bold ${heading}`}>GH₵248,300.00</p>
           </div>

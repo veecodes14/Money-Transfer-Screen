@@ -19,8 +19,8 @@ export function BottomNav({ tab, dark, unreadCount = 0, onChange }: BottomNavPro
   const base = dark
     ? 'bg-slate-900/95 border-slate-700/60'
     : 'bg-white/95 border-gray-200'
-  const activeColor = 'text-blue-500'
-  const inactiveColor = dark ? 'text-slate-500' : 'text-gray-400'
+  const activeColor = dark ? 'text-blue-400' : 'text-brand-navy'
+  const inactiveColor = dark ? 'text-slate-500' : 'text-primary-300'
 
   return (
     <nav
@@ -46,7 +46,7 @@ export function BottomNav({ tab, dark, unreadCount = 0, onChange }: BottomNavPro
               </div>
               <span>{label}</span>
               {active && (
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-blue-500" />
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full" style={{ background: dark ? '#3b82f6' : '#D4A843' }} />
               )}
             </button>
           )

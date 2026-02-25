@@ -26,11 +26,11 @@ export function ConfirmModal({
   const backdrop = 'absolute inset-0 bg-black/60 backdrop-blur-sm'
   const sheet = dark
     ? 'relative bg-slate-800 border border-slate-700 text-white'
-    : 'relative bg-white border border-gray-200 text-gray-900'
-  const muted = dark ? 'text-slate-400' : 'text-gray-500'
-  const divider = dark ? 'border-slate-700' : 'border-gray-100'
-  const rowLabel = dark ? 'text-slate-400 text-xs' : 'text-gray-500 text-xs'
-  const rowValue = dark ? 'text-white font-medium text-sm' : 'text-gray-900 font-medium text-sm'
+    : 'relative bg-white border border-primary-100 text-brand-navy'
+  const muted = dark ? 'text-slate-400' : 'text-primary-400'
+  const divider = dark ? 'border-slate-700' : 'border-primary-100'
+  const rowLabel = dark ? 'text-slate-400 text-xs' : 'text-primary-400 text-xs'
+  const rowValue = dark ? 'text-white font-medium text-sm' : 'text-brand-navy font-medium text-sm'
 
   return (
     <div className={overlay}>
@@ -64,7 +64,7 @@ export function ConfirmModal({
           ].map((row, i) => (
             <div
               key={row.label}
-              className={`flex justify-between items-center px-4 py-3 ${i > 0 ? `border-t ${divider}` : ''} ${dark ? 'bg-slate-700/40' : 'bg-gray-50'}`}
+              className={`flex justify-between items-center px-4 py-3 ${i > 0 ? `border-t ${divider}` : ''} ${dark ? 'bg-slate-700/40' : 'bg-primary-50'}`}
             >
               <span className={rowLabel}>{row.label}</span>
               <span className={rowValue}>{row.value}</span>
@@ -93,7 +93,7 @@ export function ConfirmModal({
             onClick={onCancel}
             disabled={isPending}
             className={`flex-1 py-3.5 rounded-2xl font-semibold text-sm transition-all disabled:opacity-40
-              ${dark ? 'bg-slate-700 text-white' : 'bg-gray-100 text-gray-700'}`}
+              ${dark ? 'bg-slate-700 text-white' : 'bg-primary-50 text-brand-navy border border-primary-200'}`}
           >
             Cancel
           </button>
@@ -101,9 +101,9 @@ export function ConfirmModal({
             type="button"
             onClick={onConfirm}
             disabled={isPending}
+            style={{ background: isPending ? undefined : 'linear-gradient(135deg, #D4A843, #B08A2E)', color: '#001A3A' }}
             className="flex-2 flex items-center justify-center gap-2 py-3.5 rounded-2xl
-              font-bold text-sm text-white bg-linear-to-r from-blue-600 to-cyan-500
-              shadow-lg shadow-blue-500/30 transition-all disabled:opacity-60 disabled:cursor-not-allowed
+              font-bold text-sm transition-all disabled:opacity-60 disabled:cursor-not-allowed
               active:scale-[0.98]"
           >
             {isPending ? (

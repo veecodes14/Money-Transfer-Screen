@@ -6,6 +6,67 @@
 
 :root {
   color-scheme: light;
+
+  /* Brand */
+  --color-brand-navy: #002855;
+  --color-brand-navy-light: #003D7A;
+  --color-brand-navy-dark: #001A3A;
+  --color-brand-gold: #D4A843;
+  --color-brand-gold-light: #E8C976;
+  --color-brand-gold-dark: #B08A2E;
+
+  /* Primary palette */
+  --color-primary-50: #E6EEF5;
+  --color-primary-100: #B3CCE0;
+  --color-primary-200: #80AACC;
+  --color-primary-300: #4D89B8;
+  --color-primary-400: #2670A8;
+  --color-primary-500: #002855;
+  --color-primary-600: #00224A;
+  --color-primary-700: #001C3F;
+  --color-primary-800: #001633;
+  --color-primary-900: #001028;
+
+  /* Accent palette */
+  --color-accent-50: #FDF8EC;
+  --color-accent-100: #F9ECCC;
+  --color-accent-200: #F2D999;
+  --color-accent-300: #E8C976;
+  --color-accent-400: #D4A843;
+  --color-accent-500: #B08A2E;
+  --color-accent-600: #8C6E24;
+  --color-accent-700: #68521B;
+  --color-accent-800: #443611;
+  --color-accent-900: #201B08;
+}
+
+@theme inline {
+  --color-brand-navy: var(--color-brand-navy);
+  --color-brand-navy-light: var(--color-brand-navy-light);
+  --color-brand-navy-dark: var(--color-brand-navy-dark);
+  --color-brand-gold: var(--color-brand-gold);
+  --color-brand-gold-light: var(--color-brand-gold-light);
+  --color-brand-gold-dark: var(--color-brand-gold-dark);
+  --color-primary-50: var(--color-primary-50);
+  --color-primary-100: var(--color-primary-100);
+  --color-primary-200: var(--color-primary-200);
+  --color-primary-300: var(--color-primary-300);
+  --color-primary-400: var(--color-primary-400);
+  --color-primary-500: var(--color-primary-500);
+  --color-primary-600: var(--color-primary-600);
+  --color-primary-700: var(--color-primary-700);
+  --color-primary-800: var(--color-primary-800);
+  --color-primary-900: var(--color-primary-900);
+  --color-accent-50: var(--color-accent-50);
+  --color-accent-100: var(--color-accent-100);
+  --color-accent-200: var(--color-accent-200);
+  --color-accent-300: var(--color-accent-300);
+  --color-accent-400: var(--color-accent-400);
+  --color-accent-500: var(--color-accent-500);
+  --color-accent-600: var(--color-accent-600);
+  --color-accent-700: var(--color-accent-700);
+  --color-accent-800: var(--color-accent-800);
+  --color-accent-900: var(--color-accent-900);
 }
 
 body {

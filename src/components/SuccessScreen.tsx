@@ -19,9 +19,9 @@ export function SuccessScreen({ result, formData, dark, onNewTransfer }: Success
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const muted = dark ? 'text-slate-400' : 'text-gray-500'
-  const card = dark ? 'bg-slate-700/50 border-slate-600' : 'bg-gray-50 border-gray-200'
-  const divider = dark ? 'border-slate-700' : 'border-gray-100'
+  const muted = dark ? 'text-slate-400' : 'text-primary-400'
+  const card = dark ? 'bg-slate-700/50 border-slate-600' : 'bg-primary-50 border-primary-100'
+  const divider = dark ? 'border-slate-700' : 'border-primary-100'
 
   return (
     <div className="flex flex-col items-center text-center py-4 space-y-6">
@@ -35,7 +35,7 @@ export function SuccessScreen({ result, formData, dark, onNewTransfer }: Success
       </div>
 
       <div>
-        <h2 className={`text-2xl font-black mb-1 ${dark ? 'text-white' : 'text-gray-900'}`}>
+        <h2 className={`text-2xl font-black mb-1 ${dark ? 'text-white' : 'text-brand-navy'}`}>
           Transfer Successful!
         </h2>
         <p className={`text-sm ${muted}`}>
@@ -47,7 +47,7 @@ export function SuccessScreen({ result, formData, dark, onNewTransfer }: Success
       <button
         type="button"
         onClick={copyRef}
-        className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all ${card} ${dark ? 'text-slate-300' : 'text-gray-600'}`}
+        className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all ${card} ${dark ? 'text-slate-300' : 'text-primary-600'}`}
       >
         <span className="text-sm font-mono font-semibold">{result.reference}</span>
         {copied ? (
@@ -67,10 +67,10 @@ export function SuccessScreen({ result, formData, dark, onNewTransfer }: Success
         ].map((row, i) => (
           <div
             key={row.label}
-            className={`flex justify-between items-center px-4 py-3 text-left ${i > 0 ? `border-t ${divider}` : ''} ${dark ? 'bg-slate-700/30' : 'bg-gray-50'}`}
+            className={`flex justify-between items-center px-4 py-3 text-left ${i > 0 ? `border-t ${divider}` : ''} ${dark ? 'bg-slate-700/30' : 'bg-primary-50'}`}
           >
             <span className={`text-xs ${muted}`}>{row.label}</span>
-            <span className={`text-sm font-medium ${dark ? 'text-white' : 'text-gray-900'}`}>
+            <span className={`text-sm font-medium ${dark ? 'text-white' : 'text-brand-navy'}`}>
               {row.value}
             </span>
           </div>
@@ -81,9 +81,8 @@ export function SuccessScreen({ result, formData, dark, onNewTransfer }: Success
       <button
         type="button"
         onClick={onNewTransfer}
-        className="w-full py-4 rounded-2xl font-bold text-base text-white
-          bg-linear-to-r from-blue-600 to-cyan-500 shadow-lg shadow-blue-500/30
-          active:scale-[0.98] transition-all"
+        style={{ background: 'linear-gradient(135deg, #D4A843, #B08A2E)', color: '#001A3A' }}
+        className="w-full py-4 rounded-2xl font-bold text-base active:scale-[0.98] transition-all"
       >
         New Transfer
       </button>

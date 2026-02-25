@@ -36,21 +36,21 @@ export function NotificationsTab({ dark }: NotificationsTabProps) {
     )
   }
 
-  const muted = dark ? 'text-slate-400' : 'text-gray-500'
+  const muted = dark ? 'text-slate-400' : 'text-primary-400'
   const itemBg = (read: boolean) =>
     dark
       ? read
         ? 'bg-slate-800/40'
         : 'bg-slate-700/60 border-l-2 border-cyan-500'
       : read
-        ? 'bg-white'
-        : 'bg-blue-50/60 border-l-2 border-blue-500'
+        ? 'bg-white border border-primary-100'
+        : 'bg-accent-50 border-l-2 border-brand-gold'
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <h2 className={`text-base font-bold ${dark ? 'text-white' : 'text-gray-900'}`}>
+          <h2 className={`text-base font-bold ${dark ? 'text-white' : 'text-brand-navy'}`}>
             Notifications
           </h2>
           {unreadCount > 0 && (
@@ -62,7 +62,7 @@ export function NotificationsTab({ dark }: NotificationsTabProps) {
         {unreadCount > 0 && (
           <button
             onClick={markAllRead}
-            className={`text-xs font-semibold ${dark ? 'text-cyan-400' : 'text-blue-600'}`}
+            className={`text-xs font-semibold ${dark ? 'text-cyan-400' : 'text-brand-navy'}`}
           >
             Mark all read
           </button>
@@ -91,7 +91,7 @@ export function NotificationsTab({ dark }: NotificationsTabProps) {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-0.5">
-                    <p className={`text-sm font-semibold truncate ${dark ? 'text-white' : 'text-gray-900'}`}>
+                    <p className={`text-sm font-semibold truncate ${dark ? 'text-white' : 'text-brand-navy'}`}>
                       {n.title}
                     </p>
                     <span className={`text-xs shrink-0 ${muted}`}>{n.time}</span>
@@ -99,7 +99,7 @@ export function NotificationsTab({ dark }: NotificationsTabProps) {
                   <p className={`text-xs leading-snug ${muted}`}>{n.message}</p>
                 </div>
                 {!n.read && (
-                  <div className="shrink-0 w-2 h-2 rounded-full bg-blue-500 mt-1.5" />
+                  <div className="shrink-0 w-2 h-2 rounded-full mt-1.5" style={{ background: dark ? '#3b82f6' : '#D4A843' }} />
                 )}
               </button>
             )

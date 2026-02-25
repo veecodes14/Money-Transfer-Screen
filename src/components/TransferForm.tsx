@@ -29,11 +29,11 @@ export function TransferForm({ dark, onContinue }: TransferFormProps) {
     isSuccess &&
     accountName !== null
 
-  const label = dark ? 'text-slate-300' : 'text-gray-500'
+  const label = dark ? 'text-slate-300' : 'text-primary-500'
   const input = dark
     ? 'bg-slate-700/60 border-slate-600 text-white placeholder:text-slate-500 focus:border-cyan-500'
-    : 'bg-gray-50 border-gray-200 text-gray-900 placeholder:text-gray-400 focus:border-blue-500'
-  const selectBg = dark ? 'bg-slate-700/60' : 'bg-gray-50'
+    : 'bg-white border-primary-200 text-brand-navy placeholder:text-primary-300 focus:border-brand-navy'
+  const selectBg = dark ? 'bg-slate-700/60' : 'bg-white'
 
   function handleContinue() {
     if (!canContinue) return
@@ -112,7 +112,7 @@ export function TransferForm({ dark, onContinue }: TransferFormProps) {
             ))}
           </select>
           <ChevronDown
-            className={`pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 ${dark ? 'text-slate-400' : 'text-gray-400'}`}
+            className={`pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 ${dark ? 'text-slate-400' : 'text-primary-400'}`}
           />
         </div>
       </div>
@@ -142,7 +142,7 @@ export function TransferForm({ dark, onContinue }: TransferFormProps) {
       <div className="space-y-1.5">
         <label className={`block text-xs font-semibold uppercase tracking-wide ${label}`}>
           Narration{' '}
-          <span className={`normal-case font-normal ${dark ? 'text-slate-500' : 'text-gray-400'}`}>
+          <span className={`normal-case font-normal ${dark ? 'text-slate-500' : 'text-primary-300'}`}>
             (optional)
           </span>
         </label>
@@ -153,7 +153,7 @@ export function TransferForm({ dark, onContinue }: TransferFormProps) {
           placeholder="e.g. Rent, School fees…"
           className={`w-full border rounded-xl px-4 py-3.5 text-base transition-all outline-none ${input}`}
         />
-        <p className={`text-xs text-right px-1 ${dark ? 'text-slate-500' : 'text-gray-400'}`}>
+        <p className={`text-xs text-right px-1 ${dark ? 'text-slate-500' : 'text-primary-400'}`}>
           {narration.length}/100
         </p>
       </div>
@@ -163,9 +163,10 @@ export function TransferForm({ dark, onContinue }: TransferFormProps) {
         type="button"
         disabled={!canContinue}
         onClick={handleContinue}
-        className="w-full mt-2 py-4 rounded-2xl text-white font-bold text-base tracking-wide transition-all
-          bg-linear-to-r from-blue-600 to-cyan-500 shadow-lg shadow-blue-500/30
-          disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none
+        style={canContinue ? { background: 'linear-gradient(135deg, #D4A843, #B08A2E)', color: '#001A3A' } : undefined}
+        className="w-full mt-2 py-4 rounded-2xl font-bold text-base tracking-wide transition-all
+          bg-primary-200 text-primary-700
+          disabled:opacity-40 disabled:cursor-not-allowed
           active:scale-[0.98]"
       >
         Continue

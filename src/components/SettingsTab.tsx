@@ -6,11 +6,11 @@ interface SettingsTabProps {
 }
 
 export function SettingsTab({ dark, onToggleDark }: SettingsTabProps) {
-  const muted = dark ? 'text-slate-400' : 'text-gray-500'
+  const muted = dark ? 'text-slate-400' : 'text-primary-400'
   const item = dark
     ? 'bg-slate-700/40 border border-slate-600/50 text-white'
-    : 'bg-white border border-gray-200 text-gray-900'
-  const divider = dark ? 'divide-slate-700' : 'divide-gray-100'
+    : 'bg-white border border-primary-100 text-brand-navy'
+  const divider = dark ? 'divide-slate-700' : 'divide-primary-100'
 
   const settingGroups = [
     {
@@ -25,7 +25,7 @@ export function SettingsTab({ dark, onToggleDark }: SettingsTabProps) {
               type="button"
               onClick={onToggleDark}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200
-                ${dark ? 'bg-cyan-500' : 'bg-gray-300'}`}
+                ${dark ? 'bg-brand-gold' : 'bg-gray-300'}`}
               aria-label="Toggle dark mode"
             >
               <span
@@ -60,11 +60,11 @@ export function SettingsTab({ dark, onToggleDark }: SettingsTabProps) {
     <div className="space-y-6">
       {/* Profile */}
       <div className={`flex items-center gap-4 px-4 py-4 rounded-2xl ${item}`}>
-        <div className="w-12 h-12 rounded-full bg-linear-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-white font-bold text-base shrink-0">
+        <div className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-base shrink-0" style={{ background: 'linear-gradient(135deg, #D4A843, #B08A2E)', color: '#001A3A' }}>
           AC
         </div>
         <div className="flex-1 min-w-0">
-          <p className={`font-bold text-sm ${dark ? 'text-white' : 'text-gray-900'}`}>
+          <p className={`font-bold text-sm ${dark ? 'text-white' : 'text-brand-navy'}`}>
             Ava Customer
           </p>
           <p className={`text-xs truncate ${muted}`}>customer@bank.com</p>
@@ -81,11 +81,11 @@ export function SettingsTab({ dark, onToggleDark }: SettingsTabProps) {
               const Icon = row.icon
               return (
                 <div key={row.label} className={`flex items-center gap-3 px-4 py-3.5 ${dark ? 'bg-slate-700/20' : 'bg-white'}`}>
-                  <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${dark ? 'bg-slate-600/50' : 'bg-gray-100'}`}>
-                    <Icon className={`w-4 h-4 ${dark ? 'text-slate-300' : 'text-gray-600'}`} />
+                  <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${dark ? 'bg-slate-600/50' : 'bg-primary-50'}`}>
+                    <Icon className={`w-4 h-4 ${dark ? 'text-slate-300' : 'text-brand-navy'}`} />
                   </div>
                   <div className="flex-1">
-                    <p className={`text-sm font-medium ${dark ? 'text-white' : 'text-gray-900'}`}>
+                    <p className={`text-sm font-medium ${dark ? 'text-white' : 'text-brand-navy'}`}>
                       {row.label}
                     </p>
                     <p className={`text-xs ${muted}`}>{row.description}</p>
