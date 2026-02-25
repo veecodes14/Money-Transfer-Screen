@@ -11,7 +11,7 @@ import type { TransferFormData } from '../types/transfer'
 
 type Step = 'form' | 'confirm' | 'success'
 
-const DARK_KEY = 'novabank_dark'
+const DARK_KEY = 'secondbank_dark'
 
 export function TransferPage() {
   const [tab, setTab] = useState<Tab>('transfer')

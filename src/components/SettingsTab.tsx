@@ -109,7 +109,7 @@ export function SettingsTab({ dark, onToggleDark }: SettingsTabProps) {
         Sign Out
       </button>
 
-      <p className={`text-center text-xs ${muted}`}>NovaBank v1.0.0</p>
+      <p className={`text-center text-xs ${muted}`}>Second Bank v1.0.0</p>
     </div>
   )
 }
