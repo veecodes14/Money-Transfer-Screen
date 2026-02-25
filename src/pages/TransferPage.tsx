@@ -18,9 +18,9 @@ export function TransferPage() {
   const [dark, setDark] = useState<boolean>(() => {
     try {
       const saved = localStorage.getItem(DARK_KEY)
-      return saved !== null ? saved === 'true' : true // default dark
+      return saved !== null ? saved === 'true' : false // default light
     } catch {
-      return true
+      return false
     }
   })
   const [step, setStep] = useState<Step>('form')
